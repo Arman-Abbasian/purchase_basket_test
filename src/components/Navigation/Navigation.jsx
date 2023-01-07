@@ -11,7 +11,7 @@ const Navigation = () => {
                         isActive ? "activeLink" : undefined}>home</NavLink>
                     </li>
                     <li>
-                        <NavLink to={'/cart'}>cart</NavLink>
+                        <NavLink to={'/cartPage'}>cart</NavLink>
                     </li>
                 </ul>
             </nav>
