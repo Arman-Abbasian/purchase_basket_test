@@ -14,6 +14,22 @@ export const cartReducer=(state,action)=>{
                 previousCartItems[isExistedAlready]=existedItem
                 return  {...state,cart:previousCartItems}
            }
+        };
+
+
+        case 'REMOVE_PRODUCT':{
+            console.log(state,action);
+            const updatedCart=[...state.cart];
+            const findItem=updatedCart.findIndex(item=>item.id===action.payload.id);
+            const clonefindedObject={...updatedCart[findItem]};
+            if(clonefindedObject.quantity ===1){
+              const remaindItems=updatedCart.filter(item=>item.id!==clonefindedObject.id);
+              return {...state,cart:remaindItems}
+            }else{
+                clonefindedObject.quantity--;
+                updatedCart[findItem]=clonefindedObject;
+                return {...state,cart:updatedCart}
+            }
         }
     }
 }
