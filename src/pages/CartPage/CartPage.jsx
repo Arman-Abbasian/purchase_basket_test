@@ -5,7 +5,7 @@ import './cartPage.css';
 
 
 const CartPage = () => {
-    const {cart}=useCart();
+    const {cart,total}=useCart();
     const dispatch=useCartActions();
     
     const incHandler=(item)=>{
@@ -38,7 +38,10 @@ const CartPage = () => {
                     ))
                     }
                     </section>
-                    <section className="cartSummary">cart summary</section>
+                    <section className="cartSummary">
+                        <h2>cart summary</h2>
+                        <div>{total} $</div>
+                    </section>
                 </section>
             </main>
         </Layout>

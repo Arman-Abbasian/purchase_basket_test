@@ -7,12 +7,12 @@ export const cartReducer=(state,action)=>{
            const isExistedAlready= previousCartItems.findIndex(item=>item.id===action.payload.id);   
            if(isExistedAlready <0){
                 previousCartItems.push({...action.payload,quantity:1});
-                return {...state,cart:previousCartItems}
+                return {...state,cart:previousCartItems,total:state.total+action.payload.price}
            }else{
                 const existedItem={...previousCartItems[isExistedAlready]};
                 existedItem.quantity++;
                 previousCartItems[isExistedAlready]=existedItem
-                return  {...state,cart:previousCartItems}
+                return  {...state,cart:previousCartItems,total:state.total+action.payload.price}
            }
         };
 
@@ -24,12 +24,14 @@ export const cartReducer=(state,action)=>{
             const clonefindedObject={...updatedCart[findItem]};
             if(clonefindedObject.quantity ===1){
               const remaindItems=updatedCart.filter(item=>item.id!==clonefindedObject.id);
-              return {...state,cart:remaindItems}
+              return {...state,cart:remaindItems ,total:state.total-action.payload.price}
             }else{
                 clonefindedObject.quantity--;
                 updatedCart[findItem]=clonefindedObject;
-                return {...state,cart:updatedCart}
+                return {...state,cart:updatedCart,total:state.total-action.payload.price}
             }
         }
+        default:
+            return state;
     }
 }
