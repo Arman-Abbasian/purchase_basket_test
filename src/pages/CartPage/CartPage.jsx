@@ -7,13 +7,6 @@ import './cartPage.css';
 const CartPage = () => {
     const {cart,total}=useCart();
     const dispatch=useCartActions();
-    
-    const incHandler=(item)=>{
-        console.log(item)
-    };
-    const decHandler=(item)=>{
-        console.log(item)
-    }
 
 
     if(!cart.length) return <Layout><h2>no product in basket !</h2></Layout>
