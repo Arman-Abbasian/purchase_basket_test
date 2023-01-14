@@ -1,0 +1,9 @@
+.summaryItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.summaryItem.net{
+border-top: 1px solid #ccc;
+}

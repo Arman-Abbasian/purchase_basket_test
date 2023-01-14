@@ -1,4 +1,5 @@
 import React from "react";
+import CartSummary from "../../components/CartSummary/CartSummary";
 import Layout from "../../Layout/Layout";
 import { useCart, useCartActions } from "../../Providers/CartProviders";
 import './cartPage.css';
@@ -21,7 +22,7 @@ const CartPage = () => {
                                 <img src={item.image} alt={item.name}></img>
                             </div>
                             <div>{item.name}</div>
-                            <div>{item.price * item.quantity}</div>
+                            <div>{item.offPrice * item.quantity}</div>
                             <div>
                                 <button onClick={()=>dispatch({type:"REMOVE_PRODUCT",payload:item})}>remove</button>
                                 <button>{item.quantity}</button>
@@ -31,10 +32,7 @@ const CartPage = () => {
                     ))
                     }
                     </section>
-                    <section className="cartSummary">
-                        <h2>cart summary</h2>
-                        <div>{total} $</div>
-                    </section>
+                    <CartSummary />
                 </section>
             </main>
         </Layout>

@@ -4,8 +4,8 @@ export const products=[
         name:"cover 405",
         description:[{support:"free delivery"},{support:"original"}],
         price:120,
-        offPrice:120,
-        discount:0,
+        offPrice:110,
+        discount:10,
         image:'/images/products/gh6.png'
     },
     {
@@ -22,8 +22,8 @@ export const products=[
         name:"cover 2008",
         description:[{support:"free delivery"}],
         price:200,
-        offPrice:0,
-        discount:0,
+        offPrice:160,
+        discount:40,
         image:'/images/products/gh8.png'
     },
 ]

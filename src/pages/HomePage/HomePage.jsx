@@ -27,7 +27,7 @@ const HomePage = () => {
                     </div>
                     <div className="productDesc">
                         <p>{item.name}</p>
-                        <p>{item.price}</p>
+                        <p>{item.offPrice}</p>
                         <button className="btn primary" onClick={()=>addProductHandler(item)}> {checkInCart(cart,item)?"in cart":"add to cart"}</button>
                     </div>
                 </section>
