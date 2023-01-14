@@ -1,6 +1,12 @@
 import React from "react";
+import Login from "../../components/Login/Login";
+import Layout from "../../Layout/Layout";
 const LoginPage = () => {
-  return <div>login</div>;
+  return (
+    <Layout>
+      <Login />
+    </Layout>
+  );
 };
 
 export default LoginPage;
