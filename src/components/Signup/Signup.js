@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import './signup.css';
 import Input from '../../common/Input/Input';
 import { Link } from 'react-router-dom';
+import { signupUser } from '../../services/signupService';
  
- const  initialValues={ name: '', email: '',phoneNumber:'',password:'',passwordConfirmation:'' };
+const  initialValues={ name: '', email: '',phoneNumber:'',password:'',passwordConfirmation:'' };
       
-      const onSubmit=(values, { resetForm }) => {
-        console.log(values);
-        resetForm();
-       }
+
     const validationSchema=Yup.object({
         name:Yup.string().required('name is required'),
         email:Yup.string().email("invalid email format").required("email is required"),
@@ -20,6 +18,23 @@ import { Link } from 'react-router-dom';
     });
 
  const Signup = () => {
+  const [error,setError]=useState(null);
+
+
+  const onSubmit=async (values, { resetForm }) => {
+    const {name,email,phoneNumber,password}=values;
+    const userData={name,email,phoneNumber,password};
+    try {
+      const {data}= await signupUser(userData)
+      console.log(data)
+    } catch (err) {
+      console.log(err.response.data.message)
+      if(err.response && err.response.data.message){
+        setError(err.response.data.message)
+      }
+    }
+    resetForm();
+   };
     
      const formik=useFormik({initialValues,onSubmit,validationSchema,validateOnMount:true})
        return (
@@ -34,6 +49,7 @@ import { Link } from 'react-router-dom';
            <button type="submit" disabled={!formik.isValid}>
              Submit
            </button>
+           {error && <p style={{color:"red"}}>{error}</p>}
            <Link to={'/login'}>
             <p>Already login ?</p>
            </Link>
